@@ -53,5 +53,7 @@ FROM
         create_table_query := CONCAT('CREATE TABLE ', req_table_name, ' AS (', full_data_query, ');');
         RAISE NOTICE '%', create_table_query;
         EXECUTE create_table_query;
+        -- Procedure responsible for generating MD5 hash
+        CALL ADD_HASH_TO_TABLES (req_table_name);
 END;
 $$
